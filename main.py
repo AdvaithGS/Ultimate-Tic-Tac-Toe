@@ -26,23 +26,22 @@ class Board():
             print(' | ', end = ' ')
         print()
       print()
+  def check_board(self,lst : list,sign : str):
+    for i in [(0,1),(3,1),(6,1),(2,2),(0,3),(1,3),(2,3),(0,4)]:
+      if all([lst[j] == sign for j in range(i[0],i[0] + (2*i[1]) + 1,i[1])]):
+        return True,i
+    return False,0
+  
   def game_status(self,choice : int, current_player : Player):
     if self.won[choice] != ' ':
       return
-    l = [0,1,2,3,6,0,2,0]
-    #   [4,3,2,1,1,3,3,1]
-    for i in range(len(l)):
-      if i < 5:
-        cursor = max(4-l[i],1) 
-      else:
-        cursor = 8-i + (l[i]//2)
-      if all([self.board[choice][j] == current_player.sign for j in range(l[i],l[i] + (2*cursor) + 1,cursor)]):
-        self.won[choice] = current_player.name
-        for j in range(l[i],l[i] + (2*cursor) + 1,cursor):
+    if self.check_board(self.board[choice],current_player.sign)[0]:
+      self.won[choice] = current_player.name
+      pair = self.check_board(self.board[choice],current_player.sign)[1]
+      for j in range(pair[0] ,pair[0] + (2*pair[1]) + 1,pair[1]):
           self.board[choice][j] = colored(self.board[choice][j],current_player.colour)
-        return colored(f'{current_player.name} has taken square {choice + 1}. ',current_player.colour)
-    else:
-      return
+      return colored(f'{current_player.name} has taken square {choice + 1}. ',current_player.colour)
+    return
 p1 = Player(input('Enter player 1 (X) name: '),'X','cyan')
 p2 = Player(input('Enter player 2 (O) name: '),'O','yellow')
 
@@ -71,3 +70,6 @@ while not board.game_won:
   board.show()
   if status:
     print(status)
+    if board.check_board(board.won,current_player.name):
+      print(board.won)
+      board.game_won = True
