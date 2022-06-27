@@ -20,13 +20,22 @@ while not board.game_won:
     choice = input(f'Make your move, {current_player}: ')
   choice = int(choice) - 1
   
-  while choice not in range(10) or all([i != '-' for i in board.board[choice]]) or board.board[area][choice] != '-':
+  while choice not in range(10) or board.board[area][choice] != '-':
     print(colored('Please choose a valid position that is not taken/allows the opponent to play','red'))
     choice = int(input(f'Make your move, {current_player}: ')) - 1
-
+  
   board.board[area][choice] = current_player.sign
   status = board.game_status(area,current_player)
   board.show()
   if status:
     print(status)
     board.check_game(current_player)
+  if not board.game_won and all([i != '-' for i in board.board[choice]]):
+    next_player = next(gamers)
+    print(f'{current_player.name} has chosen a square that is full, so {next_player.name} can choose any square to play.')
+    area = input(f'{next_player}, chose the square in which you want to play: ')
+
+    while not area.isdigit() or int(area) not in range(10) or all([i == '-' for i in board.board[int(area)]]):
+      area = input(('Chose a valid square: ','red'))
+    player_skip = next(gamers)
+    choice = int(area) - 1
