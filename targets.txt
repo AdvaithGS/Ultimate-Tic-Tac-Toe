@@ -1,0 +1,7 @@
+Red out slots that cannot be played
+
+Play over internet
+
+Ask for another game
+
+Ask if they have colour compatibility
