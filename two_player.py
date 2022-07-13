@@ -29,7 +29,7 @@ while not board.game_won:
   board.show()
   if status:
     print(status)
-    board.check_game(current_player)
+    print(board.check_game(current_player))
   if not board.game_won and all([i != '-' for i in board.board[choice]]):
     next_player = next(gamers)
     print(f'{current_player.name} has chosen a square that is full, so {next_player.name} can choose any square to play.')
