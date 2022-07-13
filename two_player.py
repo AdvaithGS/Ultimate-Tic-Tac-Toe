@@ -20,7 +20,7 @@ while not board.game_won:
     choice = input(f'Make your move, {current_player}: ')
   choice = int(choice) - 1
   
-  while choice not in range(10) or board.board[area][choice] != '-':
+  while choice not in range(9) or board.board[area][choice] != '-':
     print(colored('Please choose a valid position that is not taken/allows the opponent to play','red'))
     choice = int(input(f'Make your move, {current_player}: ')) - 1
   
