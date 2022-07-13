@@ -11,7 +11,7 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host,port))
 
 server.listen(1)
-print(f'Listening on {socket.gethostbyname(socket.gethostname())}, share this with the other player to have them join in.')
+print(f'Listening on {host}, share this with the other player to have them join in.')
 client, address  = server.accept()
 
 def new_print(s):
