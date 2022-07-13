@@ -14,17 +14,27 @@ class Board():
     self.game_won = False
   def __str__(self):
     return self.board
-  def show(self):
+  def show(self,connected = False,client = None):
     print()
+    if connected:
+      client.send('\n'.encode('utf-8'))
     for b in range(3):
       for a in range(3):
         for j in range(3):
           for i in range(3):
             print(self.board[j+3*b][i+3*a],end = ' ')
+            if connected:
+              client.send((str(self.board[j+3*b][i+3*a]) + 'space').encode('utf-8'))
           if j != 2:
             print(' | ', end = ' ')
+            if connected:
+              client.send((' | ' + 'space').encode('utf-8'))
         print()
+        if connected:
+          client.send(('\n').encode('utf-8'))
       print()
+      if connected:
+        client.send(('\n').encode('utf-8'))
   
   def check_list(self,board: list, sign :str):
     for i in [(0,4),(1,3),(2,2),(3,1),(6,1),(0,3),(2,3),(0,1)]:
