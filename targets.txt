@@ -5,3 +5,5 @@ Play over internet
 Ask for another game
 
 Ask if they have colour compatibility
+
+Save games in file
