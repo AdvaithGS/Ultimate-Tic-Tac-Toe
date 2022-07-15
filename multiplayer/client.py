@@ -1,6 +1,6 @@
 import socket
 name = input('Enter player name: ')
-host = input('Enter public ip of host: ')
+host = input('Enter ip of host: ')
 port = 8080
 
 socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
