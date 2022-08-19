@@ -1,8 +1,20 @@
 from itertools import cycle
-from termcolor import colored
+import termcolor
+
 from classes import Player,Board
+from json import loads
+
+with open('ut3.json') as f:
+  d = loads(f.read())
+
 p1 = Player(input('Enter player 1 (X) name: '),'X','cyan')
 p2 = Player(input('Enter player 2 (O) name: '),'O','yellow')
+
+def colored(s:str,c:str):
+  if d['color_compatibility']:
+    return colored(s,c)
+  return s
+  
 
 board = Board([['-']*9 for i in range(9)])
 
