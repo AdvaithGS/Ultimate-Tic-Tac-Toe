@@ -1,5 +1,5 @@
 import os
-from termcolor import colored
+from classes import colored
 import json
 
 if 'ut3.json' not in os.listdir():
@@ -18,9 +18,9 @@ if 'ut3.json' not in os.listdir():
   f.write(json.dumps(d))
   f.close()
 
-print("\t**********************************************")
-print("\t***********  Ultimate Tic Tac Toe  ***********")
-print("\t**********************************************")
+print(f"\t{colored('**********************************************','cyan')}")
+print(f"\t{colored('***********  ','cyan')}{colored('Ultimate Tic Tac Toe','green')}{colored('  ***********','cyan')}")
+print(f"\t{colored('**********************************************','cyan')}")
 
 print('Enter 1 to start playing and 2 for settings:')
 s = input('>> ')
