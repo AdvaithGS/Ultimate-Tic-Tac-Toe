@@ -1,4 +1,7 @@
-from termcolor import colored
+import termcolor
+from json import loads
+with open('ut3.json') as f:
+  d = loads(f.read())
 class Player():
   def __init__(self,name: str,sign: str,colour : str):
     self.name = name
@@ -22,7 +25,7 @@ class Board():
           for i in range(3):
             print(self.board[j+3*b][i+3*a],end = ' ')
           if j != 2:
-            print(' | ', end = ' ')
+            print(colored(' | ',d['board_color']), end = ' ')
         print()
       print()
     if connected:
@@ -63,3 +66,8 @@ class Board():
       self.game_won = True
       return colored(f'{player.name} has won the game! Congratulations',player.colour)
     return '\n'
+ 
+def colored(s:str,c:str):
+  if d['color_compatible']:
+    return termcolor.colored(s,c)
+  return s
