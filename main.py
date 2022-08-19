@@ -18,9 +18,9 @@ if 'ut3.json' not in os.listdir():
   f.write(json.dumps(d))
   f.close()
 
-print(f"\t{colored('**********************************************','cyan')}")
-print(f"\t{colored('***********  ','cyan')}{colored('Ultimate Tic Tac Toe','green')}{colored('  ***********','cyan')}")
-print(f"\t{colored('**********************************************','cyan')}")
+print(f"\t{colored('**********************************************','yellow')}")
+print(f"\t{colored('***********  ','yellow')}{colored('Ultimate Tic Tac Toe','white')}{colored('  ***********','yellow')}")
+print(f"\t{colored('**********************************************','yellow')}")
 
 print('Enter 1 to start playing and 2 for settings:')
 s = input('>> ')

@@ -1,22 +1,16 @@
 from itertools import cycle
 import termcolor
 
-from classes import Player,Board
+from classes import Player,Board,colored
 from json import loads
 
 with open('ut3.json') as f:
   d = loads(f.read())
 
-p1 = Player(input('Enter player 1 (X) name: '),'X','cyan')
-p2 = Player(input('Enter player 2 (O) name: '),'O','yellow')
+p1 = Player(input('Enter player 1 (X) name: '),'X',d['self_colour'])
+p2 = Player(input('Enter player 2 (O) name: '),'O',d['opponent_colour'])
 
-def colored(s:str,c:str):
-  if d['color_compatibility']:
-    return colored(s,c)
-  return s
-  
-
-board = Board([['-']*9 for i in range(9)])
+board = Board()
 
 board.show()
 gamers = cycle(iter([p1,p2]))

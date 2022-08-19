@@ -1,7 +1,6 @@
 import socket
-from classes import Board,Player
+from classes import Board,Player,colored
 from itertools import cycle
-from termcolor import colored
 name = input('Enter your name: ')
 p1 = Player(name,'X','yellow') 
 host = socket.gethostbyname(socket.gethostname()) 
@@ -31,7 +30,7 @@ p2 = Player(name,'O','cyan')
 print(f'{name} has connected through {address}. Starting the game.')
 client.send(f'You have been connected with {p1.name}'.encode('utf-8'))
 
-board = Board([['-']*9 for i in range(9)])
+board = Board()
 board.show(True,client)
 gamers = cycle(iter([p1,p2]))
 choice  = 4
