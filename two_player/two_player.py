@@ -58,6 +58,16 @@ while not board.game_won:
         pickle.dump(i,f)
     print('Game paused and saved to file.')
     break
+  elif choice == 'exit':
+    inp = input('Do you wish to save the game? Y/N >> ').lower()
+    while inp not in ['y','n']:
+      inp = input('>> ')
+    if inp == 'y':
+      with open('gamesave.ut3','wb') as f:
+        for i in p1,p2,board,playing,area:
+          pickle.dump(i,f)
+      print('Game paused and saved to file.')
+    break
 
   while not choice.isdigit():
     print('You must enter a number')
