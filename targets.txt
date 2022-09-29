@@ -7,3 +7,7 @@ Ask for another game
 Ask if they have colour compatibility
 
 Save games in file
+
+resume
+ 
+save score
