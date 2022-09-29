@@ -88,6 +88,8 @@ class Board():
   def check_game(self,player : Player):
     if self.check_list(self.won,player.name)[0]:
       self.game_won = True
+      f = open('gamesave.ut3','wb')
+      f.close()
       return colored(f'{player.name} has won the game! Congratulations',player.colour)
     return '\n'
  
