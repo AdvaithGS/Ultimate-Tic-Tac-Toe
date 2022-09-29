@@ -1,26 +1,64 @@
 from itertools import cycle
-import termcolor
-
+import os
+import pickle
 from classes import Player,Board,colored
 from json import loads
 
 with open('ut3.json') as f:
   d = loads(f.read())
 
-p1 = Player(input('Enter player 1 (X) name: '),'X',d['self_colour'])
-p2 = Player(input('Enter player 2 (O) name: '),'O',d['opponent_colour'])
+if not 'gamesave.ut3' in os.listdir():
+  f = open('gamesave.ut3','wb')
+  f.close()
 
-board = Board()
+with open('gamesave.ut3','rb') as f:
+  if len(f.read()):
+    f.seek(0,0)
+    p1 = pickle.load(f)
+    p2 = pickle.load(f)
+    board = pickle.load(f)
+    playing = pickle.load(f)
+    choice = pickle.load(f)
+    inp = input(f'Found a paused game between {p1.name} and {p2.name}. Do you wish to recover it?: Y/N >> ').lower()
+    while not inp in ['y','n']:
+      inp = input('>> ').lower()
+    
+    if inp != 'y':
+      f = open('gamesave.ut3','wb')
+      f.close()
+      var = False
+    else:
+      var = True
+  else:
+    var = False  
+if not var:
+  p1 = Player(input('Enter player 1 (X) name: '),'X',d['self_colour'])
+  p2 = Player(input('Enter player 2 (O) name: '),'O',d['opponent_colour'])
+  board = Board()
+  playing = 0
+  choice = 4
 
 board.show()
+if playing:
+  p1,p2 = p2,p1
+
 gamers = cycle(iter([p1,p2]))
-choice  = 4
+
 while not board.game_won:
   area = choice
   current_player : Player = next(gamers)
   print(f'Now it is {current_player}\'s chance.')
+  playing = 0 if current_player == p1 else 1
 
   choice = input(f'Make your move, {current_player}: ')
+  
+  if choice == 'pause':
+    with open('gamesave.ut3','wb') as f:
+      for i in p1,p2,board,playing,area:
+        pickle.dump(i,f)
+    print('Game paused and saved to file.')
+    break
+
   while not choice.isdigit():
     print('You must enter a number')
     choice = input(f'Make your move, {current_player}: ')
