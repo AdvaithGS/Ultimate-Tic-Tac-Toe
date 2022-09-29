@@ -1,5 +1,23 @@
 import termcolor
-from json import loads
+from json import loads,dumps
+import os
+
+if 'ut3.json' not in os.listdir():
+  print()
+  f = open('ut3.json','w')
+  
+  print ('Does the following line render properly for you? Y/N:', termcolor.colored('Ultimate Tic Tic Toe','yellow'),sep = '\n')
+  s = input('>> ').lower()
+  while s not in ['y','n']:
+    s = input('>> ').lower()
+  if s == 'y':
+    d = {'color_compatible':True}
+    d['self_colour'] = 'green'
+    d['opponent_colour'] = 'yellow' 
+  else:
+    d = {'color_compatible':False}
+  f.write(dumps(d))
+  f.close()
 with open('ut3.json') as f:
   d = loads(f.read())
 

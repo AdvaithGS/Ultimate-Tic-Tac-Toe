@@ -2,21 +2,6 @@ import os
 from classes import colored
 import json
 
-if 'ut3.json' not in os.listdir():
-  print()
-  f = open('ut3.json','w')
-  
-  print ('Does the following line render properly for you? Y/N:', colored('Ultimate Tic Tic Toe','yellow'),sep = '\n')
-  s = input('>> ').lower()
-  while s not in ['y','n']:
-    s = input('>> ').lower()
-  if s == 'y':
-    d = {'color_compatible':True}
-  else:
-    d = {'color_compatible':False}
-
-  f.write(json.dumps(d))
-  f.close()
 
 print(f"\t{colored('**********************************************','yellow')}")
 print(f"\t{colored('***********  ','yellow')}{colored('Ultimate Tic Tac Toe','white')}{colored('  ***********','yellow')}")
