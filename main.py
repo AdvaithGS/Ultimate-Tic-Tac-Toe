@@ -1,6 +1,5 @@
 import os
 from classes import colored
-import json
 
 
 print(f"\t{colored('**********************************************','yellow')}")
