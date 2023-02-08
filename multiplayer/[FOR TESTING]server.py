@@ -1,12 +1,11 @@
 import socket
-host = socket.gethostbyname(socket.gethostname()) 
-port = 8080
+host = ''
+port = 9999
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind((host,port))
-
 server.listen(5)
-print(f'Listening on {socket.gethostbyname(socket.gethostname())}')
+print(f'Listening')
 
 while True:
   player, address  = server.accept()
