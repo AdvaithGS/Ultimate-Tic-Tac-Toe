@@ -16,7 +16,7 @@ if 'ut3.json' not in os.listdir():
     d['opponent_colour'] = 'yellow' 
   else:
     d = {'color_compatible':False}
-  d['preferred_port'] = 9999
+  d['preferred_port'] = 5555
   d['online_self_colour'] = 'cyan'
   f.write(dumps(d))
   f.close()
