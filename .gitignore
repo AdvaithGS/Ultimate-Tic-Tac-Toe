@@ -133,3 +133,6 @@ dmypy.json
 /internet
 ut3.json
 gamesave.ut3
+
+# for those who are about to be executed
+*.exe
