@@ -1,7 +1,7 @@
 import socket
 name = input('Enter player name: ')
-host = input('Enter ip of host: ')
-port = 8080
+host = '0.tcp.in.ngrok.io'
+port = int(input('Enter port: '))
 
 socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 socket.connect((host,port))
